@@ -198,6 +198,36 @@
     .final-line span { font-size: 12px; color: var(--muted); text-align: right; }
     .fine-print { color: var(--subtle); font-size: 11px; margin: 16px 0 0; }
     .footer { border-top: 1px solid var(--line); margin-top: 56px; padding: 21px 0 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 11px; color: var(--muted); }
+
+    .glossary-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+    .gl-card { border: 1px solid var(--line); background: var(--panel); border-radius: 14px; padding: 16px; }
+    .gl-card strong { display:block; font-size: 12px; margin-bottom: 6px; color: var(--accent-ink); }
+    .gl-card p { margin:0; font-size: 12px; color: var(--muted); }
+    .gl-card .mono { display:inline-block; margin-top:8px; }
+    .visual-steps { display:grid; grid-template-columns: 1fr 34px 1fr 34px 1fr; align-items:center; gap:8px; }
+    .visual-box { border:1px solid var(--line); background: var(--panel); border-radius: 14px; padding: 16px; min-height: 100px; }
+    .visual-box strong { display:block; font-size:13px; margin-bottom:6px; }
+    .visual-box p { margin:0; font-size:12px; color:var(--muted); line-height:1.55; }
+    .visual-arrow { display:grid; place-items:center; color: var(--accent-ink); font-size: 20px; font-weight: 800; }
+    .compare-grid { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+    .compare-card { border:1px solid var(--line); border-radius: 14px; padding:16px; background: var(--panel); }
+    .compare-card h3 { margin:0 0 10px; font-size:13px; }
+    .compare-card ul { margin:0; padding-left: 18px; color: var(--muted); font-size:12px; }
+    .compare-card li + li { margin-top: 7px; }
+    .compare-card.good { background: var(--green-soft); border-color: transparent; }
+    .compare-card.bad { background: var(--red-soft); border-color: transparent; }
+    .process-lanes { display:grid; grid-template-columns: 1fr 1fr 1fr; gap:12px; }
+    .lane { border:1px solid var(--line); border-radius: 14px; padding:16px; background: var(--panel); }
+    .lane strong { display:block; font-size:13px; margin-bottom:5px; }
+    .lane p { margin:0; font-size:12px; color: var(--muted); }
+    .lane .mono { display:block; margin-top:10px; }
+    .ok-bad-grid { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+    .status-card { border:1px solid var(--line); border-radius:14px; padding:16px; background: var(--panel); }
+    .status-card b { display:block; margin-bottom:8px; font-size:13px; }
+    .status-card p { margin:0; color:var(--muted); font-size:12px; }
+    .status-card.ok { background: var(--green-soft); border-color: transparent; }
+    .status-card.no { background: var(--red-soft); border-color: transparent; }
+
     @media (max-width: 1170px) {
       .content { padding-left: 32px; padding-right: 32px; }
       .topbar { padding-left: 32px; padding-right: 32px; }
@@ -249,6 +279,12 @@
       .final-line { display: block; }
       .final-line b { display: block; margin-bottom: 3px; }
       .final-line span { text-align: left; display: block; }
+
+      .glossary-grid { grid-template-columns: 1fr; }
+      .visual-steps { grid-template-columns: 1fr; }
+      .visual-arrow { transform: rotate(90deg); min-height: 20px; }
+      .compare-grid, .ok-bad-grid, .process-lanes { grid-template-columns: 1fr; }
+
     }
     @media (max-width: 390px) {
       .defs-grid, .constraints { grid-template-columns: 1fr; }
@@ -326,6 +362,15 @@
           <a class="secondary-link" href="#chiavi">Vai direttamente alle chiavi <span aria-hidden="true">→</span></a>
         </div>
         <div class="hero-meta"><span>08 sezioni</span><span>Sintetico e visuale</span><span>100% offline</span></div>
+
+        <div class="panel" style="margin-top:14px">
+          <div class="panel-title">Parole difficili, spiegate facile</div>
+          <div class="glossary-grid">
+            <div class="gl-card"><strong>Minimalità</strong><p>Vuol dire: <b>non c'è niente di troppo</b>. Se puoi togliere una colonna e funziona ancora, allora non è minimale.</p></div>
+            <div class="gl-card"><strong>Univoco</strong><p>Vuol dire: <b>uno solo</b>. Un valore univoco identifica una sola riga.</p></div>
+            <div class="gl-card"><strong>Istanza</strong><p>È la <b>situazione attuale dei dati</b>, cioè le righe presenti in questo momento.</p></div><div class="gl-card"><strong>NULL</strong><p>Significa <b>valore mancante o sconosciuto</b>, non zero e non una stringa vuota.</p></div><div class="gl-card"><strong>Vincolo</strong><p>Una <b>regola</b> che impedisce dati sbagliati, come due matricole uguali.</p></div><div class="gl-card"><strong>DBMS</strong><p>Il <b>programma che gestisce il database</b>, come MySQL o PostgreSQL.</p></div>
+          </div>
+        </div>
       </section>
 
       <section class="section" id="fondamenta" aria-labelledby="heading-fondamenta">
@@ -337,6 +382,17 @@
           <article class="def"><b>Dominio</b><p>Insieme dei valori consentiti per un attributo.</p></article>
           <article class="def"><b>Schema</b><p>Struttura del database: nomi, attributi, tipi e vincoli.</p></article>
           <article class="def"><b>Istanza</b><p>I dati effettivamente presenti in un certo momento.</p></article>
+        </div>
+
+        <div class="panel" style="margin-top:14px">
+          <div class="panel-title">Schema grafico: dal database alle righe</div>
+          <div class="visual-steps">
+            <div class="visual-box"><strong>Database</strong><p>Contiene più tabelle.</p></div>
+            <div class="visual-arrow">→</div>
+            <div class="visual-box"><strong>Relazione</strong><p>È una tabella, per esempio <span class="mono">STUDENTI</span>.</p></div>
+            <div class="visual-arrow">→</div>
+            <div class="visual-box"><strong>Dentro la tabella</strong><p><b>Tuple = righe</b><br><b>Attributi = colonne</b></p></div>
+          </div>
         </div>
         <div class="panel" style="margin-top:14px">
           <div class="panel-title">Esempio: relazione STUDENTI</div>
@@ -369,6 +425,14 @@
           </div>
         </div>
         <div class="banner" style="margin-top:14px"><span class="spark">✦</span><div><strong>Frase da imparare</strong><p>Ogni <b>chiave</b> è una <b>superchiave</b>, ma non ogni superchiave è una chiave.</p></div></div>
+
+        <div class="panel" style="margin-top:14px">
+          <div class="panel-title">Esempio grafico: perché conta la minimalità?</div>
+          <div class="compare-grid">
+            <div class="compare-card bad"><h3>❌ {Matricola, Nome}</h3><ul><li>Identifica la riga? <b>Sì</b>.</li><li>Però <span class="mono">Nome</span> è di troppo.</li><li>Quindi è una <b>superchiave</b>, non una chiave.</li></ul></div>
+            <div class="compare-card good"><h3>✅ {Matricola}</h3><ul><li>Identifica la riga? <b>Sì</b>.</li><li>Puoi togliere qualcosa? <b>No</b>.</li><li>Quindi è una <b>chiave</b>.</li></ul></div>
+          </div>
+        </div>
       </section>
 
       <section class="section" id="esterne" aria-labelledby="heading-esterne">
@@ -403,6 +467,15 @@
           <article class="constraint"><h3>DEFAULT</h3><p>Valore usato automaticamente quando non ne fornisci uno.</p></article>
         </div>
         <div class="panel" style="margin-top:14px">
+          <div class="panel-title">Esempi grafici: valori accettati o rifiutati</div>
+          <div class="ok-bad-grid">
+            <div class="status-card ok"><b>✅ Valido</b><p><span class="mono">Voto = 24</span> con <span class="mono">CHECK (Voto &gt;= 18)</span>.<br>Il valore rispetta la regola.</p></div>
+            <div class="status-card no"><b>❌ Non valido</b><p><span class="mono">Voto = 15</span> con <span class="mono">CHECK (Voto &gt;= 18)</span>.<br>Il DBMS blocca l'inserimento.</p></div>
+            <div class="status-card ok"><b>✅ Valido</b><p><span class="mono">Nome = 'Luca'</span> con <span class="mono">NOT NULL</span>.<br>Il campo non è vuoto.</p></div>
+            <div class="status-card no"><b>❌ Non valido</b><p><span class="mono">Nome = NULL</span> con <span class="mono">NOT NULL</span>.<br>Il DBMS rifiuta il valore.</p></div>
+          </div>
+        </div>
+        <div class="panel" style="margin-top:14px">
           <div class="rule"><span class="rule-icon">D</span><div><strong>Dominio</strong><p>Insieme di valori ammessi: es. <span class="mono">INTEGER</span>, <span class="mono">VARCHAR(40)</span>, <span class="mono">DATE</span>.</p></div></div>
           <div class="rule"><span class="rule-icon">+</span><div><strong>Dominio personalizzato</strong><p>Un tipo definito a partire da uno esistente, con eventuali <b>CHECK</b> e <b>DEFAULT</b>. Evita di ripetere gli stessi vincoli.</p></div></div>
           <div class="rule"><span class="rule-icon">!</span><div><strong>Violazione di un vincolo</strong><p>Una modifica non valida viene rifiutata, salvo le azioni referenziali applicabili.</p></div></div>
@@ -416,6 +489,15 @@
           <article class="sql-type"><div class="type-name">DML</div><div class="type-full">Data Manipulation Language</div><p>Modifica i <strong>dati</strong> che sono dentro le tabelle.</p><div class="tag-list"><span>INSERT</span><span>UPDATE</span><span>DELETE</span></div></article>
         </div>
         <div class="banner" style="margin-top:14px"><span class="spark">↗</span><div><strong>Come ricordarlo?</strong><p><b>DDL = cambia la tabella.</b> <b>DML = cambia ciò che c'è nella tabella.</b> <span class="mono">SELECT</span> serve a interrogare i dati (spesso detto DQL).</p></div></div>
+
+        <div class="panel" style="margin-top:14px">
+          <div class="panel-title">Schema grafico: quando usare cosa?</div>
+          <div class="process-lanes">
+            <div class="lane"><strong>DDL</strong><p>Usalo quando devi <b>costruire o cambiare la tabella</b>.</p><span class="mono">CREATE · ALTER · DROP</span></div>
+            <div class="lane"><strong>DML</strong><p>Usalo quando devi <b>inserire, modificare o cancellare righe</b>.</p><span class="mono">INSERT · UPDATE · DELETE</span></div>
+            <div class="lane"><strong>DQL / SELECT</strong><p>Usalo quando devi <b>leggere i dati</b>, senza cambiarli.</p><span class="mono">SELECT</span></div>
+          </div>
+        </div>
       </section>
 
       <section class="section" id="comandi" aria-labelledby="heading-comandi">
@@ -498,7 +580,7 @@
         </div>
         <div class="banner" style="margin-top:14px"><span class="spark">✓</span><div><strong>Hai tutto l'essenziale.</strong><p>Ripassa prima le definizioni, poi rileggi gli esempi e infine prova a ricordare i comandi senza guardarli.</p></div></div>
       </section>
-      <footer class="footer"><span>Ripasso sintetico basato sul materiale fornito · Database relazionali e SQL</span><span>Creato per lo studio · Apribile anche offline</span></footer>
+      <footer class="footer"><span>Ripasso sintetico basato sul materiale fornito · Database relazionali e SQL</span><span>Aggiornato con esempi grafici e parole difficili spiegate</span></footer>
     </div>
   </main>
 </div>
