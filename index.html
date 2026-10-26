@@ -228,6 +228,34 @@
     .status-card.ok { background: var(--green-soft); border-color: transparent; }
     .status-card.no { background: var(--red-soft); border-color: transparent; }
 
+
+    .live-card { margin-top:14px; padding:20px; background:var(--panel); border:1px solid var(--line); border-radius:16px; }
+    .live-head { font-weight:800; font-size:14px; margin:0 0 12px; }
+    .action-tabs { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+    .action-tabs button { border:1px solid var(--line); border-radius:9px; background:var(--panel-soft); color:var(--text); font-size:12px; padding:9px 12px; font-weight:750; }
+    .action-tabs button[aria-pressed=true] { border-color:var(--accent); background:var(--accent-soft); color:var(--accent-ink); }
+    .action-output { padding:14px; border-radius:10px; background:var(--panel-soft); font-size:12px; color:var(--muted); }
+    .action-output b { color:var(--text); }
+    .quiz-choice { display:flex; width:100%; text-align:left; padding:13px 14px; margin:8px 0; border:1px solid var(--line); border-radius:10px; color:var(--text); font-weight:600; background:var(--panel); font-size:13px; gap:12px; align-items:center; }
+    .quiz-choice:hover:not(:disabled) { border-color:var(--accent); background:var(--panel-soft); }
+    .quiz-choice:disabled { cursor:default; opacity:1; }
+    .quiz-choice .letter { flex-shrink:0; display:grid; place-items:center; height:27px; width:27px; border:1px solid var(--line); border-radius:7px; color:var(--accent-ink); font-size:11px; font-weight:800; }
+    .quiz-choice.right { border-color:var(--green); background:var(--green-soft); }
+    .quiz-choice.wrong { border-color:var(--red); background:var(--red-soft); }
+    .quiz-btn { display:inline-flex; align-items:center; padding:10px 16px; border-radius:9px; background:var(--accent); border:0; color:#fff; font-size:12px; font-weight:750; }
+    .quiz-btn:disabled { opacity:.45; cursor:default; }
+    .quiz-feedback { border-radius:9px; background:var(--panel-soft); color:var(--text); padding:13px 14px; font-size:12px; margin-top:12px; }
+    .quiz-foot { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:15px; }
+    .score-label { color:var(--muted); font-size:12px; font-weight:750; }
+    .quiz-question { font-size:18px; line-height:1.35; font-weight:800; margin:0 0 18px; }
+    .fk-visual { display:grid; grid-template-columns: minmax(0,1fr) 26px minmax(0,1fr); gap:9px; align-items:center; }
+    .fk-col { border:1px solid var(--line); border-radius:11px; padding:13px; overflow:hidden; min-width:0; background:var(--panel-soft); }
+    .fk-col h3 { font-size:12px; font-weight:800; margin:0 0 9px; }
+    .fk-col table { font-size:11px; }
+    .fk-col th, .fk-col td { padding:7px 8px; white-space:normal; overflow-wrap:anywhere; }
+    .fk-arrow { font-size:20px; font-weight:800; color:var(--accent-ink); text-align:center; }
+    @media(max-width:540px) { .fk-visual { grid-template-columns:1fr; } .fk-arrow { transform:rotate(90deg); } .quiz-foot { flex-wrap:wrap; } }
+
     @media (max-width: 1170px) {
       .content { padding-left: 32px; padding-right: 32px; }
       .topbar { padding-left: 32px; padding-right: 32px; }
@@ -334,7 +362,8 @@
       <a href="#sql"><span class="nav-num">05</span>SQL: DDL e DML</a>
       <a href="#comandi"><span class="nav-num">06</span>Comandi SQL</a>
       <a href="#reazioni"><span class="nav-num">07</span>Azioni referenziali</a>
-      <a href="#ricordare"><span class="nav-num">08</span>Da ricordare</a>
+      <a href="#allenati"><span class="nav-num">08</span>Mini test</a>
+      <a href="#ricordare"><span class="nav-num">09</span>Da ricordare</a>
     </nav>
     <div class="sidebar-bottom"><strong>Studia senza distrazioni.</strong>Funziona anche offline, senza installare nulla.</div>
   </aside>
@@ -361,14 +390,14 @@
           <a class="primary-link" href="#fondamenta">Inizia il ripasso <span aria-hidden="true">↗</span></a>
           <a class="secondary-link" href="#chiavi">Vai direttamente alle chiavi <span aria-hidden="true">→</span></a>
         </div>
-        <div class="hero-meta"><span>08 sezioni</span><span>Sintetico e visuale</span><span>100% offline</span></div>
+        <div class="hero-meta"><span>09 sezioni</span><span>Sintetico e visuale</span><span>100% offline</span></div>
 
         <div class="panel" style="margin-top:14px">
           <div class="panel-title">Parole difficili, spiegate facile</div>
           <div class="glossary-grid">
             <div class="gl-card"><strong>Minimalità</strong><p>Vuol dire: <b>non c'è niente di troppo</b>. Se puoi togliere una colonna e funziona ancora, allora non è minimale.</p></div>
             <div class="gl-card"><strong>Univoco</strong><p>Vuol dire: <b>uno solo</b>. Un valore univoco identifica una sola riga.</p></div>
-            <div class="gl-card"><strong>Istanza</strong><p>È la <b>situazione attuale dei dati</b>, cioè le righe presenti in questo momento.</p></div><div class="gl-card"><strong>NULL</strong><p>Significa <b>valore mancante o sconosciuto</b>, non zero e non una stringa vuota.</p></div><div class="gl-card"><strong>Vincolo</strong><p>Una <b>regola</b> che impedisce dati sbagliati, come due matricole uguali.</p></div><div class="gl-card"><strong>DBMS</strong><p>Il <b>programma che gestisce il database</b>, come MySQL o PostgreSQL.</p></div>
+            <div class="gl-card"><strong>Istanza</strong><p>È la <b>situazione attuale dei dati</b>, cioè le righe presenti in questo momento.</p></div>
           </div>
         </div>
       </section>
@@ -454,13 +483,23 @@
           </article>
         </div>
         <div class="notice"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5m0 4h.01"/></svg><span>Se in <strong>CLIENTI</strong> esistono solo ID 1 e 2, non puoi inserire un ordine con <strong>ClienteID = 99</strong>. Un valore NULL è possibile solo se la colonna lo permette.</span></div>
+
+        <div class="panel" style="margin-top:14px">
+          <div class="panel-title">Esempio grafico: segui lo stesso numero nelle due tabelle</div>
+          <div class="fk-visual">
+            <div class="fk-col"><h3>CLIENTI · tabella padre</h3><table><thead><tr><th>ID (PK)</th><th>Nome</th></tr></thead><tbody><tr><td class="key-cell">1</td><td>Mario</td></tr><tr><td class="key-cell">2</td><td>Luca</td></tr></tbody></table></div>
+            <div class="fk-arrow">↔</div>
+            <div class="fk-col"><h3>ORDINI · tabella figlia</h3><table><thead><tr><th>Ordine</th><th>ClienteID (FK)</th></tr></thead><tbody><tr><td>100</td><td class="key-cell">1</td></tr><tr><td>101</td><td class="key-cell">1</td></tr><tr><td>102</td><td class="key-cell">2</td></tr></tbody></table></div>
+          </div>
+          <p class="micro">La FK <b>ClienteID = 1</b> indica Mario. Può ripetersi perché Mario può fare più ordini. Invece <b>ClienteID = 99</b> non sarebbe valido: non c'è alcun cliente con ID 99.</p>
+        </div>
       </section>
 
       <section class="section" id="vincoli" aria-labelledby="heading-vincoli">
         <div class="section-heading"><div class="section-index">04</div><div><h2 id="heading-vincoli">Domini e vincoli</h2><p class="section-lead">Le regole che i dati devono rispettare.</p></div></div>
         <div class="constraints">
-          <article class="constraint"><h3>NOT NULL</h3><p>Il campo non può essere vuoto (NULL).</p></article>
-          <article class="constraint"><h3>UNIQUE</h3><p>Impedisce valori duplicati per la chiave/vincolo definito.</p></article>
+          <article class="constraint"><h3>NOT NULL</h3><p>Il valore non può essere NULL (assente).</p></article>
+          <article class="constraint"><h3>UNIQUE</h3><p>Non consente valori non NULL duplicati nella colonna o combinazione scelta.</p></article>
           <article class="constraint"><h3>PRIMARY KEY</h3><p>Chiave primaria: univoca e mai NULL.</p></article>
           <article class="constraint"><h3>FOREIGN KEY</h3><p>Collega tabelle e controlla i riferimenti.</p></article>
           <article class="constraint"><h3>CHECK</h3><p>Controlla una condizione, per esempio <span class="mono">Voto &gt;= 18</span>.</p></article>
@@ -546,6 +585,21 @@
           </div>
         </div>
         <div class="notice"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v5m0 4h.01"/></svg><span><strong>RESTRICT</strong> evita l'eliminazione di oggetti con dipendenze; <strong>CASCADE</strong> propaga l'eliminazione alle dipendenze. Il supporto esatto dei comandi può cambiare in base al DBMS. Il <strong>dizionario dei dati</strong> conserva informazioni su tabelle, colonne e vincoli (metadati).</span></div>
+
+        <div class="panel" style="margin-top:14px">
+          <div class="panel-title">Mini dizionario · parole difficili</div>
+          <div class="glossary-grid">
+            <div class="gl-card"><strong>DBMS</strong><p>È il programma che gestisce i database, per esempio MySQL.</p></div>
+            <div class="gl-card"><strong>NULL</strong><p>Un valore assente o sconosciuto. Non significa zero.</p></div>
+            <div class="gl-card"><strong>Vincolo</strong><p>Una regola che i dati devono rispettare.</p></div>
+            <div class="gl-card"><strong>Referenziale</strong><p>Riguarda i collegamenti fra tabelle.</p></div>
+            <div class="gl-card"><strong>Metadati</strong><p>Dati che descrivono altri dati, come i nomi delle colonne.</p></div>
+            <div class="gl-card"><strong>VARCHAR(50)</strong><p>Un testo di lunghezza variabile, fino a 50 caratteri.</p></div>
+            <div class="gl-card"><strong>INTEGER</strong><p>Un numero intero, come 7 oppure −2.</p></div>
+            <div class="gl-card"><strong>CASCADE</strong><p>Propaga una modifica o un'eliminazione alle righe collegate.</p></div>
+            <div class="gl-card"><strong>WHERE</strong><p>Indica quali righe usare. Senza WHERE, UPDATE e DELETE possono modificare tutte le righe.</p></div>
+          </div>
+        </div>
       </section>
 
       <section class="section" id="reazioni" aria-labelledby="heading-reazioni">
@@ -562,11 +616,33 @@
 <span class="kw">FOREIGN KEY</span> (ClienteID) <span class="kw">REFERENCES</span> CLIENTI(ID)
 <span class="kw">ON DELETE CASCADE</span>
 <span class="kw">ON UPDATE CASCADE</span>;</code></pre></div>
+
+        <div class="live-card">
+          <div class="live-head">Prova tu: cosa succede se eliminiamo Mario?</div>
+          <p class="micro">Mario ha due ordini collegati, 100 e 101. Seleziona la regola usata dalla FK.</p>
+          <div class="action-tabs" role="group" aria-label="Regole sulla cancellazione">
+            <button type="button" data-rule="cascade" aria-pressed="true">CASCADE</button>
+            <button type="button" data-rule="null" aria-pressed="false">SET NULL</button>
+            <button type="button" data-rule="stop" aria-pressed="false">NO ACTION</button>
+          </div>
+          <div class="action-output" id="rule-output" role="status"><b>CASCADE</b> → Mario viene eliminato insieme agli ordini 100 e 101. L'ordine 102 di Luca rimane.</div>
+        </div>
         <p class="fine-print">L'ultimo comando illustra come aggiungere un vincolo a una tabella che non abbia già una FK equivalente; non va eseguito dopo l'esempio che ne crea già una.</p>
       </section>
 
+
+      <section class="section" id="allenati" aria-labelledby="heading-allenati">
+        <div class="section-heading"><div class="section-index">08</div><div><h2 id="heading-allenati">Mini test a crocette</h2><p class="section-lead">Rispondi e guarda subito perché è giusto o sbagliato.</p></div></div>
+        <div class="panel">
+          <p class="micro" id="quiz-count" style="margin:0 0 8px">Domanda 1 di 6</p>
+          <div class="quiz-question" id="quiz-q">Caricamento...</div>
+          <div id="quiz-options" role="group" aria-label="Scegli una risposta"></div>
+          <div class="quiz-feedback" id="quiz-feedback" hidden role="status"></div>
+          <div class="quiz-foot"><span class="score-label" id="quiz-score">0 risposte corrette</span><button class="quiz-btn" id="quiz-next" type="button" disabled>Prossima →</button></div>
+        </div>
+      </section>
       <section class="section" id="ricordare" aria-labelledby="heading-ricordare">
-        <div class="section-heading"><div class="section-index">08</div><div><h2 id="heading-ricordare">Ripasso lampo</h2><p class="section-lead">Le frasi da sapere senza pensarci troppo.</p></div></div>
+        <div class="section-heading"><div class="section-index">09</div><div><h2 id="heading-ricordare">Ripasso lampo</h2><p class="section-lead">Le frasi da sapere senza pensarci troppo.</p></div></div>
         <div class="panel">
           <div class="final-list">
             <div class="final-line"><b>Relazione</b><span>La tabella · tuple = righe · attributi = colonne.</span></div>
@@ -655,6 +731,66 @@
         setTimeout(() => { button.textContent = original; }, 1800);
       });
     });
+
+    // Esempio interattivo delle azioni referenziali.
+    const ruleMessages = {
+      cascade: '<b>CASCADE</b> → Mario viene eliminato insieme agli ordini 100 e 101. L\'ordine 102 di Luca rimane.',
+      null: '<b>SET NULL</b> → Mario viene eliminato, ma gli ordini 100 e 101 restano con ClienteID = NULL (se il vincolo lo permette).',
+      stop: '<b>NO ACTION</b> → L\'eliminazione viene bloccata, perché ci sono ordini che fanno riferimento a Mario.'
+    };
+    document.querySelectorAll('[data-rule]').forEach(button => button.addEventListener('click', () => {
+      document.querySelectorAll('[data-rule]').forEach(b => b.setAttribute('aria-pressed', String(b === button)));
+      document.getElementById('rule-output').innerHTML = ruleMessages[button.dataset.rule];
+    }));
+
+    // Tutto funziona senza inviare risposte a server.
+    const quizData = [
+      {q:'Che cos\'è una tupla?', o:['Una colonna','Una riga','La chiave primaria','Un vincolo'], a:1, why:'Una tupla è una riga. Una colonna si chiama attributo.'},
+      {q:'Quando una superchiave diventa una chiave?', o:['Quando è composta solo da numeri','Quando è minimale','Quando contiene Nome e Cognome','Quando ha almeno tre attributi'], a:1, why:'Minimale significa che non puoi togliere neanche un attributo senza perdere l\'unicità.'},
+      {q:'Che cosa sono le chiavi candidate?', o:['Solo le chiavi esterne','Le chiavi possibili tra cui scegliere la primaria','Attributi sempre NULL','Tutte le colonne della tabella'], a:1, why:'Ogni chiave candidata identifica univocamente le tuple ed è minimale.'},
+      {q:'In ORDINI, ClienteID è una chiave esterna. Se CLIENTI contiene solo gli ID 1 e 2, qual è un valore valido?', o:['99','17','2','8'], a:2, why:'La FK deve rimandare a una riga esistente: ID 2 è presente in CLIENTI.'},
+      {q:'Quale comando SQL cambia la struttura?', o:['ALTER TABLE','INSERT INTO','UPDATE','DELETE FROM'], a:0, why:'ALTER TABLE appartiene al DDL: cambia la struttura della tabella.'},
+      {q:'Che cosa succede con ON DELETE CASCADE?', o:['Si blocca sempre la cancellazione','Si mettono a zero tutti i valori','Si elimina il database','Si eliminano anche le righe collegate'], a:3, why:'CASCADE propaga l\'eliminazione alle righe figlie che fanno riferimento alla riga cancellata.'}
+    ];
+    let qIndex=0, qScore=0, qAnswered=false, qFinished=false;
+    const quizQ=document.getElementById('quiz-q'), quizOptions=document.getElementById('quiz-options');
+    const quizFeedback=document.getElementById('quiz-feedback'), quizCount=document.getElementById('quiz-count');
+    const quizScore=document.getElementById('quiz-score'), quizNext=document.getElementById('quiz-next');
+    function paintQuiz() {
+      qAnswered=false; qFinished=false;
+      const item=quizData[qIndex];
+      quizQ.textContent=item.q; quizCount.textContent='Domanda '+(qIndex+1)+' di '+quizData.length;
+      quizNext.disabled=true; quizNext.textContent=qIndex===quizData.length-1?'Risultato →':'Prossima →';
+      quizFeedback.hidden=true; quizOptions.replaceChildren();
+      item.o.forEach((option,i)=>{
+        const b=document.createElement('button'); b.type='button'; b.className='quiz-choice';
+        const letter=document.createElement('span');letter.className='letter';letter.textContent='ABCD'[i];
+        const label=document.createElement('span');label.textContent=option;b.append(letter,label);
+        b.addEventListener('click',()=>{
+          if(qAnswered) return;
+          qAnswered=true;if(i===item.a)qScore++;
+          [...quizOptions.children].forEach((element,n)=>{
+            element.disabled=true;
+            if(n===item.a)element.classList.add('right');
+            else if(n===i)element.classList.add('wrong');
+          });
+          quizScore.textContent=qScore+' risposte corrette';
+          quizFeedback.textContent=(i===item.a?'✅ Corretto! ':'❌ Non proprio. ')+item.why;
+          quizFeedback.hidden=false; quizNext.disabled=false;
+        });
+        quizOptions.appendChild(b);
+      });
+    }
+    quizNext.addEventListener('click',()=>{
+      if(qFinished){qIndex=0;qScore=0;quizScore.textContent='0 risposte corrette';paintQuiz();return;}
+      if(!qAnswered)return;
+      if(qIndex<quizData.length-1){qIndex++;paintQuiz();return;}
+      qFinished=true;quizQ.textContent='Test completato!';quizCount.textContent='Risultato finale';
+      quizOptions.replaceChildren();quizFeedback.hidden=false;
+      quizFeedback.textContent='Hai risposto correttamente a '+qScore+' domande su '+quizData.length+'. Puoi riprovare per migliorare.';
+      quizNext.textContent='Ricomincia ↻';quizNext.disabled=false;
+    });
+    paintQuiz();
   }());
 </script>
 </body>
